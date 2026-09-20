@@ -1,0 +1,571 @@
+/* =========================================================
+   ADASA NAVBAR — PREMIUM CINEMATIC
+   Dark Glass / Orange Accent / Responsive
+   ========================================================= */
+
+:host {
+  display: block;
+
+  --nav-bg: rgba(8, 8, 8, 0.88);
+  --nav-surface: rgba(18, 18, 18, 0.82);
+  --nav-border: rgba(255, 255, 255, 0.075);
+
+  --orange: #f2941c;
+  --orange-light: #ffb347;
+  --orange-dark: #df7808;
+
+  --text: #ffffff;
+  --muted: #8b8b8b;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+nav {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 9999;
+
+  height: 80px;
+
+  direction: rtl;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 12, 12, 0.94),
+      rgba(8, 8, 8, 0.86)
+    );
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+
+  backdrop-filter: blur(22px) saturate(130%);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+
+  box-shadow:
+    0 8px 35px rgba(0, 0, 0, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.025);
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   NAVBAR GLOW LINE
+   ========================================================= */
+
+nav::after {
+  content: "";
+
+  position: absolute;
+
+  left: 8%;
+  right: 8%;
+  bottom: -1px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(242, 148, 28, 0.18),
+      rgba(242, 148, 28, 0.45),
+      rgba(242, 148, 28, 0.18),
+      transparent
+    );
+
+  opacity: 0.7;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NAV CONTAINER
+   ========================================================= */
+
+nav > div {
+  height: 100%;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+nav a[href="/"] {
+  position: relative;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.4s var(--ease),
+    opacity 0.3s ease;
+}
+
+
+nav a[href="/"]:hover {
+  transform: translateY(-1px);
+}
+
+
+/* Logo image container */
+
+nav a[href="/"] > div:first-child {
+  position: relative;
+
+  width: 48px;
+  height: 48px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+  transition:
+    transform 0.45s var(--ease),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+
+nav a[href="/"]:hover > div:first-child {
+  transform: scale(1.05);
+
+  border-color: rgba(242, 148, 28, 0.28);
+
+  box-shadow:
+    0 10px 30px rgba(242, 148, 28, 0.12),
+    0 8px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+
+/* Logo glow */
+
+nav a[href="/"] > div:first-child::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -30%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(242, 148, 28, 0.20),
+      transparent 65%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  pointer-events: none;
+}
+
+
+nav a[href="/"]:hover > div:first-child::before {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   LOGO TITLE
+   ========================================================= */
+
+nav a[href="/"] span:first-child {
+  transition:
+    color 0.3s ease,
+    filter 0.3s ease;
+}
+
+
+nav a[href="/"]:hover span:first-child {
+  filter:
+    drop-shadow(
+      0 0 10px rgba(242, 148, 28, 0.15)
+    );
+}
+
+
+/* =========================================================
+   DESKTOP NAV PILL
+   ========================================================= */
+
+nav .rounded-full.p-1\.5 {
+  position: relative;
+
+  padding: 4px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 10px 30px rgba(0, 0, 0, 0.18);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
+nav .rounded-full.p-1\.5 > a {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 90px;
+
+  border-radius: 999px;
+
+  color: #8a8a8a;
+
+  text-decoration: none;
+
+  transition:
+    color 0.3s ease,
+    background 0.35s ease,
+    transform 0.35s var(--ease),
+    box-shadow 0.35s ease;
+}
+
+
+/* Hover */
+
+nav .rounded-full.p-1\.5 > a:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  transform: translateY(-1px);
+}
+
+
+/* Active */
+
+nav .rounded-full.p-1\.5 > a.bg-gradient-to-r {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange-dark)
+    );
+
+  box-shadow:
+    0 7px 20px rgba(242, 148, 28, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* Active shine */
+
+nav .rounded-full.p-1\.5 > a.bg-gradient-to-r::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.14),
+      transparent 45%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   DESKTOP SEARCH
+   ========================================================= */
+
+nav button {
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.35s var(--ease);
+}
+
+
+nav button:hover {
+  transform: translateY(-1px);
+}
+
+
+/* Search glow */
+
+nav button:hover svg {
+  filter:
+    drop-shadow(
+      0 0 7px rgba(242, 148, 28, 0.35)
+    );
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+nav a[href="/blog"].bg-gradient-to-r {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff9b2f,
+      #f2941c 45%,
+      #d97706
+    );
+
+  box-shadow:
+    0 8px 25px rgba(242, 148, 28, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+
+  transition:
+    transform 0.4s var(--ease),
+    box-shadow 0.4s ease,
+    filter 0.3s ease;
+}
+
+
+nav a[href="/blog"].bg-gradient-to-r:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 13px 35px rgba(242, 148, 28, 0.27),
+    0 0 25px rgba(242, 148, 28, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  nav {
+    height: 72px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 8, 8, 0.96),
+        rgba(8, 8, 8, 0.90)
+      );
+  }
+
+
+  /* Mobile dropdown */
+
+  nav > div:last-child {
+    position: absolute;
+
+    top: 72px;
+    left: 0;
+    right: 0;
+
+    padding: 10px 14px 16px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 8, 8, 0.98),
+        rgba(10, 10, 10, 0.96)
+      );
+
+    border-bottom:
+      1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.48);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+
+  /* Mobile menu card */
+
+  nav > div:last-child > div {
+    border:
+      1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 18px;
+
+    padding: 8px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.035),
+        rgba(255, 255, 255, 0.012)
+      );
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.035),
+      0 10px 35px rgba(0, 0, 0, 0.25);
+  }
+
+
+  /* Mobile links */
+
+  nav > div:last-child a {
+    position: relative;
+
+    border-radius: 13px;
+
+    color: #a3a3a3;
+
+    transition:
+      color 0.3s ease,
+      background 0.3s ease,
+      transform 0.3s var(--ease);
+  }
+
+
+  nav > div:last-child a:hover {
+    color: #ffffff;
+
+    background:
+      rgba(242, 148, 28, 0.07);
+
+    transform: translateX(-3px);
+  }
+
+
+  /* Mobile CTA */
+
+  nav > div:last-child a[href="/blog"] {
+    color: #ffffff;
+
+    background:
+      linear-gradient(
+        135deg,
+        #ff9b2f,
+        #f2941c,
+        #d97706
+      );
+
+    box-shadow:
+      0 8px 25px rgba(242, 148, 28, 0.16);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1100px) {
+
+  nav .rounded-full.p-1\.5 > a {
+    min-width: 75px;
+
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  nav a[href="/"] span:last-child {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   LARGE SCREENS
+   ========================================================= */
+
+@media (min-width: 1280px) {
+
+  nav {
+    height: 82px;
+  }
+
+  nav .rounded-full.p-1\.5 > a {
+    min-width: 100px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+nav a:focus-visible,
+nav button:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 2px #080808,
+    0 0 0 4px rgba(242, 148, 28, 0.55);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  nav *,
+  nav *::before,
+  nav *::after {
+    animation: none !important;
+
+    transition: none !important;
+  }
+}
