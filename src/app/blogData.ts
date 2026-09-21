@@ -1,8 +1,15 @@
 
+export interface ArticleSection {
+  id: string;
+  title: string;
+  content: string;
+}
+
 export interface Author {
   name: string;
   avatar: string;
   role: string;
+  bio?: string;
 
   socials?: {
     linkedin?: string;
@@ -24,6 +31,7 @@ export interface Post {
   readTime: string;
   featured: boolean;
   tags: string[];
+  sections?: ArticleSection[];
 }
 
 export interface Category {
@@ -44,6 +52,14 @@ export interface SiteInfo {
     youtube: string;
   };
 }
+
+export interface BlogData {
+  posts: Post[];
+  categories: Category[];
+  siteInfo: SiteInfo;
+}
+
+
 export interface BlogData {
   posts: Post[];
   categories: Category[];
