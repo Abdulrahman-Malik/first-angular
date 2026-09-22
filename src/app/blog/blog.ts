@@ -3,11 +3,12 @@ import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { blogData, Post } from '../blogData';
+import { BlogDetails } from '../blog-details/blog-details';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, BlogDetails],
   templateUrl: './blog.html',
   styleUrls: ['./blog.css'],
 })
