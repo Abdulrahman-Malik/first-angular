@@ -307,9 +307,9 @@
           </article>
         }
       </div>
-    </section>
+    <section>
 
-    <section class="mx-auto max-w-[1500px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+    < class="mx-auto max-w-[1500px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
       <div class="mx-auto mb-12 max-w-2xl text-center sm:mb-14">
         <span
           class="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/[0.04] px-4 py-2 text-xs font-semibold text-orange-400 sm:text-sm"
@@ -330,138 +330,160 @@
           اعثر على محتوى يناسب اهتماماتك واكتشف أفكاراً جديدة في عالم التصوير الفوتوغرافي.
         </p>
       </div>
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <a routerLink="/blog?category=إضاءة" class="category-card group">
-          <span class="category-number">01</span>
+  <a
+    [routerLink]="['/blog']"
+    [queryParams]="{ category: 'إضاءة' }"
+    class="category-card group"
+  >
+    <span class="category-number">01</span>
 
-          <div class="category-icon">
-            <i class="fa-solid fa-sun" aria-hidden="true"></i>
-          </div>
+    <div class="category-icon">
+      <i class="fa-solid fa-sun" aria-hidden="true"></i>
+    </div>
 
-          <div class="category-content">
-            <h3>إضاءة</h3>
-            <p>أساسيات وتقنيات الإضاءة</p>
-            <span class="category-count">3 مقالات</span>
-          </div>
+    <div class="category-content">
+      <h3>إضاءة</h3>
+      <p>أساسيات وتقنيات الإضاءة</p>
+      <span class="category-count">3 مقالات</span>
+    </div>
 
-          <span class="category-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-        </a>
+    <span class="category-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </a>
 
-        <a routerLink="/blog?category=بورتريه" class="category-card group">
-          <span class="category-number">02</span>
+  <a
+    [routerLink]="['/blog']"
+    [queryParams]="{ category: 'بورتريه' }"
+    class="category-card group"
+  >
+    <span class="category-number">02</span>
 
-          <div class="category-icon">
-            <i class="fa-solid fa-user" aria-hidden="true"></i>
-          </div>
+    <div class="category-icon">
+      <i class="fa-solid fa-user" aria-hidden="true"></i>
+    </div>
 
-          <div class="category-content">
-            <h3>بورتريه</h3>
-            <p>فن تصوير الأشخاص والبورتريه</p>
-            <span class="category-count">3 مقالات</span>
-          </div>
+    <div class="category-content">
+      <h3>بورتريه</h3>
+      <p>فن تصوير الأشخاص والبورتريه</p>
+      <span class="category-count">3 مقالات</span>
+    </div>
 
-          <span class="category-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-        </a>
+    <span class="category-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </a>
 
-        <a routerLink="/blog?category=مناظر طبيعية" class="category-card group">
-          <span class="category-number">03</span>
+  <a
+    [routerLink]="['/blog']"
+    [queryParams]="{ category: 'مناظر طبيعية' }"
+    class="category-card group"
+  >
+    <span class="category-number">03</span>
 
-          <div class="category-icon">
-            <i class="fa-solid fa-mountain-sun" aria-hidden="true"></i>
-          </div>
+    <div class="category-icon">
+      <i class="fa-solid fa-mountain-sun" aria-hidden="true"></i>
+    </div>
 
-          <div class="category-content">
-            <h3>مناظر طبيعية</h3>
-            <p>اكتشف جمال الطبيعة من خلال العدسة</p>
-            <span class="category-count">2 مقالات</span>
-          </div>
+    <div class="category-content">
+      <h3>مناظر طبيعية</h3>
+      <p>اكتشف جمال الطبيعة من خلال العدسة</p>
+      <span class="category-count">2 مقالات</span>
+    </div>
 
-          <span class="category-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-        </a>
+    <span class="category-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </a>
 
-        <a routerLink="/blog?category=تقنيات" class="category-card group">
-          <span class="category-number">04</span>
+  <a
+    [routerLink]="['/blog']"
+    [queryParams]="{ category: 'تقنيات' }"
+    class="category-card group"
+  >
+    <span class="category-number">04</span>
 
-          <div class="category-icon">
-            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
-          </div>
+    <div class="category-icon">
+      <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+    </div>
 
-          <div class="category-content">
-            <h3>تقنيات</h3>
-            <p>تقنيات وأساليب التصوير المتقدمة</p>
-            <span class="category-count">5 مقالات</span>
-          </div>
+    <div class="category-content">
+      <h3>تقنيات</h3>
+      <p>تقنيات وأساليب التصوير المتقدمة</p>
+      <span class="category-count">5 مقالات</span>
+    </div>
 
-          <span class="category-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-        </a>
+    <span class="category-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </a>
 
-        <a routerLink="/blog?category=معدات" class="category-card group">
-          <span class="category-number">05</span>
+  <a
+    [routerLink]="['/blog']"
+    [queryParams]="{ category: 'معدات' }"
+    class="category-card group"
+  >
+    <span class="category-number">05</span>
 
-          <div class="category-icon">
-            <i class="fa-solid fa-camera" aria-hidden="true"></i>
-          </div>
+    <div class="category-icon">
+      <i class="fa-solid fa-camera" aria-hidden="true"></i>
+    </div>
 
-          <div class="category-content">
-            <h3>معدات</h3>
-            <p>اختيار واستخدام معدات التصوير</p>
-            <span class="category-count">4 مقالات</span>
-          </div>
+    <div class="category-content">
+      <h3>معدات</h3>
+      <p>اختيار واستخدام معدات التصوير</p>
+      <span class="category-count">4 مقالات</span>
+    </div>
 
-          <span class="category-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-        </a>
-      </div>
+    <span class="category-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </a>
+
+</div>
+
     </section>
 
     <section class="mx-auto max-w-[1500px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
@@ -784,5 +806,5 @@
         </div>
       </div>
     </section>
-  </main>
+
 </section>

@@ -1,18 +1,41 @@
 
-import { Component, computed, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { blogData, Post } from '../blogData';
 import { BlogDetails } from '../blog-details/blog-details';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule, RouterModule, BlogDetails],
+  imports: [RouterLink, BlogDetails],
   templateUrl: './blog.html',
-  styleUrls: ['./blog.css'],
+  styleUrl: './blog.css',
 })
 export class Blog {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+
+  readonly posts: Post[] = blogData.posts;
+
+  readonly categories = [
+    { value: 'all', label: 'الكل' },
+    { value: 'إضاءة', label: 'الإضاءة' },
+    { value: 'بورتريه', label: 'بورتريه' },
+    { value: 'مناظر طبيعية', label: 'مناظر طبيعية' },
+    { value: 'تقنيات', label: 'تقنيات' },
+    { value: 'معدات', label: 'معدات' },
+  ];
+
+  readonly itemsPerPage = 6;
+
+  readonly skeletons = Array.from(
+    { length: 6 },
+    (_, index) => index
+  );
+
+  readonly fallbackImage =
+    'https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1200&h=800&fit=crop&q=80';
+
   query = signal('');
   category = signal('all');
   view = signal<'grid' | 'list'>('grid');
@@ -22,18 +45,23 @@ export class Blog {
 
   currentPage = signal(1);
 
-  readonly itemsPerPage = 6;
+  constructor() {
+    this.route.queryParamMap.subscribe(params => {
+      const selectedCategory = params.get('category');
 
-  posts: Post[] = blogData.posts;
+      const validCategory = this.categories.some(
+        item => item.value === selectedCategory
+      );
 
-  categories = [
-    { value: 'all', label: 'الكل' },
-    { value: 'إضاءة', label: 'الإضاءة' },
-    { value: 'بورتريه', label: 'بورتريه' },
-    { value: 'مناظر طبيعية', label: 'مناظر طبيعية' },
-    { value: 'تقنيات', label: 'تقنيات' },
-    { value: 'معدات', label: 'معدات' },
-  ];
+      this.category.set(
+        selectedCategory && validCategory
+          ? selectedCategory
+          : 'all'
+      );
+
+      this.currentPage.set(1);
+    });
+  }
 
   featuredPosts = computed(() =>
     this.posts
@@ -42,26 +70,39 @@ export class Blog {
   );
 
   filtered = computed(() => {
-    const search = this.query().trim().toLowerCase();
+    const search = this.query()
+      .trim()
+      .toLowerCase();
+
     const selectedCategory = this.category();
 
     return this.posts.filter(post => {
+      const title = post.title?.toLowerCase() ?? '';
+      const excerpt = post.excerpt?.toLowerCase() ?? '';
+      const postCategory = post.category?.trim() ?? '';
+
+      const tags = post.tags ?? [];
+
       const matchesSearch =
         !search ||
-        post.title.toLowerCase().includes(search) ||
-        post.excerpt.toLowerCase().includes(search) ||
-        post.category.toLowerCase().includes(search) ||
-        post.tags.some(tag =>
+        title.includes(search) ||
+        excerpt.includes(search) ||
+        postCategory.toLowerCase().includes(search) ||
+        tags.some(tag =>
           tag.toLowerCase().includes(search)
         );
 
       const matchesCategory =
         selectedCategory === 'all' ||
-        post.category === selectedCategory;
+        postCategory === selectedCategory.trim();
 
       return matchesSearch && matchesCategory;
     });
   });
+
+  resultsCount = computed(() =>
+    this.filtered().length
+  );
 
   totalPages(): number {
     return Math.ceil(
@@ -81,13 +122,8 @@ export class Blog {
     return this.filtered().slice(start, end);
   });
 
-  resultsCount = computed(() =>
-    this.filtered().length
-  );
-
   pageItems(): (number | string)[] {
     const total = this.totalPages();
-    const current = this.currentPage();
 
     if (total <= 7) {
       return Array.from(
@@ -95,6 +131,8 @@ export class Blog {
         (_, index) => index + 1
       );
     }
+
+    const current = this.currentPage();
 
     if (current <= 4) {
       return [
@@ -131,10 +169,24 @@ export class Blog {
     ];
   }
 
-  skeletons = Array.from(
-    { length: 6 },
-    (_, index) => index
-  );
+  selectCategory(
+    value: string,
+    event?: Event
+  ): void {
+    event?.preventDefault();
+
+    this.currentPage.set(1);
+
+    this.router.navigate(
+      ['/blog'],
+      {
+        queryParams:
+          value === 'all'
+            ? {}
+            : { category: value },
+      }
+    );
+  }
 
   onSearch(value: string): void {
     this.query.set(value);
@@ -143,16 +195,6 @@ export class Blog {
 
   clearSearch(): void {
     this.query.set('');
-    this.currentPage.set(1);
-  }
-
-  selectCategory(
-    value: string,
-    event?: Event
-  ): void {
-    event?.preventDefault();
-
-    this.category.set(value);
     this.currentPage.set(1);
   }
 
@@ -165,11 +207,11 @@ export class Blog {
   goTo(page: number): void {
     const total = this.totalPages();
 
-    if (total === 0) {
-      return;
-    }
-
-    if (page < 1 || page > total) {
+    if (
+      total === 0 ||
+      page < 1 ||
+      page > total
+    ) {
       return;
     }
 
@@ -185,15 +227,14 @@ export class Blog {
     this.query.set('');
     this.category.set('all');
     this.currentPage.set(1);
+
+    this.router.navigate(['/blog']);
   }
 
   retry(): void {
     this.failed.set(false);
     this.loading.set(false);
   }
-
-  private readonly fallbackImage =
-    'https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1200&h=800&fit=crop&q=80';
 
   onImageError(event: Event): void {
     const image =
@@ -209,3 +250,4 @@ export class Blog {
     image.src = this.fallbackImage;
   }
 }
+

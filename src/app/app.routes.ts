@@ -1,11 +1,18 @@
+
 import { Routes } from '@angular/router';
 
+import { Home } from './home/home';
 import { Blog } from './blog/blog';
 import { BlogDetails } from './blog-details/blog-details';
-import { Home } from './home/home';
 import { About } from './about/about';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+
   {
     path: 'home',
     component: Home,
@@ -14,16 +21,12 @@ export const routes: Routes = [
   {
     path: 'blog',
     component: Blog,
-    children :[
-      {
-    path: 'blog/:slug',
-    component: BlogDetails,
-  }
-
-    ]
   },
 
- 
+  {
+    path: 'blog/:slug',
+    component: BlogDetails,
+  },
 
   {
     path: 'about',
@@ -31,13 +34,10 @@ export const routes: Routes = [
   },
 
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-
-  {
     path: '**',
-   loadComponent:()=> import('./not-found-page/not-found-page').then((m)=>m.NotFoundPage)
-  },
+    loadComponent: () =>
+      import('./not-found-page/not-found-page')
+        .then(m => m.NotFoundPage)
+  }
 ];
+
